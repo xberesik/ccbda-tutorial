@@ -5,14 +5,14 @@ Amazon SageMaker is a fully managed machine learning service. With SageMaker, da
 
 ## Lets get started with notebook instance
 
-You are probably familiar with jupyter noteeboks. If not Jupyter Notebook is an open-source web application that allows you to create and share documents containing live code, equations, visualizations, and narrative text. It supports many programming languages, including Python, R, Julia, and others, and allows you to combine code, text, and multimedia elements in a single document. 
+You are probably familiar with jupyter notebooks. If not Jupyter Notebook is an open-source web application that allows you to create and share documents containing live code, equations, visualizations, and narrative text. It supports many programming languages, including Python, R, Julia, and others, and allows you to combine code, text, and multimedia elements in a single document. 
 
-Pick Amazon SageMaker from services on aws. You can ither use Amazon SageMaker Studio or Notebook instance to build your code. First, select the option "Notebook instance" from the menu, within which we will create a new jupiter notebook. 
+Pick Amazon SageMaker from services on AWS. You can either use Amazon SageMaker Studio or Notebook instance to build your code. First, select the option "Notebook instance" from the menu, within which we will create a new jupyter notebook. 
 
 1. Click on "Create notebook instance"
 2. Give a notebook a name (e.g StartingWithML)
 3. Select instance type "ml.t2.medium"
-4. Leave other options as defualt and select "create notebook instance"
+4. Leave other options as default and select "create notebook instance"
 
 It will take some time to launch notebook instances. Once it showed status as "InService" you can click on "Open jupyter" option which will launched a new jupyter notebook instance. Create new python script by clicking on new->conda_python3. You can also use upload button to upload existing files from your computer. Play a bit with your fresh notebook before next step. 
 
@@ -22,11 +22,11 @@ Try also to start up with Amazon SageMaker Studio and create some sample code. D
 
 ## Build, train and deploy machine learning model
 
-Before we start you have to create new S3 bucket instance to have storage for our machine leaning model. I bet you can do this by your own. Then download the file code.ipynb from this repo and upload it into jupyter. Examine the code a bit. Now you can delete the S3 backet that you created. WHY? Because we can do it with python code so it will be automatic.
+Before we start you have to create a new S3 bucket instance to have storage for our machine learning model. I bet you can do this on your own. Then download the file code.ipynb from this repo and upload it into jupyter. Examine the code a bit. Now you can delete the S3 bucket that you created. WHY? Because we can do it with Python code so it will be automatic.
 
 ![Gotchu](gifs/michael-scott-wink.gif)
 
-Insert this code in the first part of jupyter notebook. Dont forget to change your bucket_name.
+Insert this code in the first part of jupyter notebook. Don't forget to change your bucket_name.
 
 ```
 # Python code:
@@ -44,15 +44,15 @@ except Exception as e:
     print('S3 error: ',e)
 ```
 
-Execute the code and check if your bucket was created sucessfully. 
+Execute the code and check if your bucket was created successfully. 
 
-To train ML model we need some data. In our example we will use public accesable dataset that is basically saing us if the customer is going to buy a service or not based on many feature variables. Examine the next part of the code "Downloading The Dataset And Storing in S3" and execute it. To read csv data we will use pandas which is an open-source data manipulation and analysis library for the Python programming language. It provides high-performance, easy-to-use data structures and data analysis tools for handling structured data. Check [this](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) quick guide for pandas if you did not work with it before. Follow the code and make train/test split on data to devide datase into training a testing subsets. Remember that our dependent features are y_yes and y_no (meaning if costumer buy service or dont). After you upladed train data into bucket go and check if everything works well. You should see new folder in you S3 bucket.
+To train the ML model we need some data. In our example, we will use a publicly accessible dataset that is describing if the customer is going to buy a service or not based on many feature variables. Examine the next part of the code "Downloading The Dataset And Storing in S3" and execute it. To read CSV data we will use pandas which is an open-source data manipulation and analysis library for the Python programming language. It provides high-performance, easy-to-use data structures and data analysis tools for handling structured data. Check [this](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) quick guide for pandas if you did not work with it before. Follow the code and make a train/test split on data to divide the dataset into training testing subsets. Remember that our dependent features are y_yes and y_no (meaning if the customer buys service or dont). After you uploaded train data into the bucket go and check if everything works well. You should see a new folder in your S3 bucket.
 
 ![S3 bucket](images/s3.png)
 
-Inside this folder you can find your training subset. You can download it anytime you want and also store multiple version of it. Do the same steps also for test data and check if everything was upladed sucessfully. 
+Inside this folder, you can find your training subset. You can download it anytime you want and also store multiple versions of it. Do the same steps also for test data and check if everything was uploaded successfully. 
 
-In the next step we are going to use Xgboot model which is a inbuild ML model. "Retrieve" function is used retrieve docker image matching the given arguments. In our case we are downloading the xgboost model from boto3 libraby with all configurations. For more info check [this](https://sagemaker.readthedocs.io/en/stable/api/utility/image_uris.html). The next step is a hyperparameter tuning. You can read more about each hyperparameter [here](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html). Once the hyperparameters are inicialized we can construct a SageMaker estimator that calls the xgboost-container. Dont hesitate to read more about parameters of Estimator class. Basically we are just defining our estimator. To reduce billing keep the parameters "use_spot_instances", "max_run" and "max_wait" as they are.
+In the next step, we are going to use Xgboot model which is an inbuild ML model. "Retrieve" function is used to retrieve a docker image matching the given arguments. In our case, we are downloading the xgboost model from boto3 library with all configurations. For more info check [this](https://sagemaker.readthedocs.io/en/stable/api/utility/image_uris.html). The next step is hyperparameter tuning. You can read more about each hyperparameter [here](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html). Once the hyperparameters are initialized we can construct a SageMaker estimator that calls the xgboost-container. Don't hesitate to read more about the parameters of the Estimator class. Basically, we are just defining our estimator. To reduce billing keep the parameters "use_spot_instances", "max_run" and "max_wait" as they are.
 
 
 TODO task: Try to play a bit with hyperparameter and document different results. 
