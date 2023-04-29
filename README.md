@@ -14,9 +14,9 @@ Pick Amazon SageMaker from services on AWS. You can either use Amazon SageMaker 
 3. Select instance type "ml.t2.medium"
 4. Leave other options as default and select "create notebook instance"
 
-It will take some time to launch notebook instances. Once it showed status as "InService" you can click on "Open jupyter" option which will launched a new jupyter notebook instance. Create new python script by clicking on new->conda_python3. You can also use upload button to upload existing files from your computer. Play a bit with your fresh notebook before next step. 
+It will take some time to launch notebook instances. Once it showed the status as "InService" you can click on "Open jupyter" option which will launch a new jupyter notebook instance. Create a new python script by clicking on new->conda_python3. You can also use the upload button to upload existing files from your computer. Play a bit with your fresh notebook before the next step. 
 
-Try also to start up with Amazon SageMaker Studio and create some sample code. Dont forget to add screenshots from your path into readme!
+Try also to start up with Amazon SageMaker Studio and create some sample code. Don't forget to add screenshots from your path into readme!
 
 ![Take some photo](gifs/giphy.gif)
 
