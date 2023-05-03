@@ -50,11 +50,40 @@ To train the ML model we need some data. In our example, we will use a publicly 
 
 ![S3 bucket](images/s3.png)
 
-Inside this folder, you can find your training subset. You can download it anytime you want and also store multiple versions of it. Do the same steps also for test data and check if everything was uploaded successfully. 
-
+Inside this folder, you can find your training subset. You can download it anytime you want and also store multiple versions of it. Do the same steps also for test data and check if everything was uploaded successfully.
 In the next step, we are going to use Xgboot model which is an inbuild ML model. "Retrieve" function is used to retrieve a docker image matching the given arguments. In our case, we are downloading the xgboost model from boto3 library with all configurations. For more info check [this](https://sagemaker.readthedocs.io/en/stable/api/utility/image_uris.html). The next step is hyperparameter tuning. You can read more about each hyperparameter [here](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html). Once the hyperparameters are initialized we can construct a SageMaker estimator that calls the xgboost-container. Don't hesitate to read more about the parameters of the Estimator class. Basically, we are just defining our estimator. To reduce billing keep the parameters "use_spot_instances", "max_run" and "max_wait" as they are.
 
+<i> NOTE: it is possible you won't be able to train the model due to insufficient permissions. 
+It is because we only have the education accounts. We are trying to get our administrator to allow the
+use of SageMaker, however if he doesn't allow it in time, there's nothing we can do and you can finish the part here.</i>
 
-TODO task: Try to play a bit with hyperparameter and document different results. 
+#### Task 1: Try to play a bit with hyperparameter and document different results. 
 
-TODO task: change the code and use your custom ML algorithm
+
+## AWS SageMaker Jumpstart
+Sagemaker has another interesting environment - Sagemaker jumpstart.
+There is a lot of example notebooks and pretrained one click solutions.
+We are going to explore pretrained natural language processing models. 
+
+In the SageMaker left menu find the JumpStart section and select Natural language processing models.
+You can see lots of different tasks there, we are going to proceed with the Text Generation - HuggingFace task since it became
+a very popular topic due to chatGPT.
+
+When you click on the view task button, it will take you to the page with information about the models.
+These models take a text string as input and predicts next words in the sequence.
+
+In the resources tab we can see link to all models. The link takes us to a [page](https://sagemaker.readthedocs.io/en/stable/algorithms/text/text_generation_hugging_face.html) with several model versions.
+You can choose any of them but AWS uses the bloom-560m model as default, so we are going to choose that one.
+
+When you get to the models page you can try its functionality by using its simple UI.
+Type a sentence to the input field and after a pretrained model is loaded (this might take a while), it will predict the next possible words for your sentence.
+
+This isn't any interesting, after all, lots of people use ChatGPT now that is capable of much more than this.
+What is interesting is that with small effort we can train our model by specifying the training hyperparameters and deploy it.
+If you click on the train icon (top right), you can choose your task and configuration and a boiler code will be generated for you.
+You can use this code in a new SageMaker notebook and try different hyperparameters to train the model and then try to use the model.
+
+<i>NOTE: again, you might not be able to complete the training part for the reasons mentioned above. </i>
+
+We are really unhappy about the problem with insufficient permissions, because you can't experience the whole potential of the SageMaker tool.
+However, we hope that you could get the idea of what could be done with this amazing tool anyway!
