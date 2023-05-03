@@ -86,4 +86,4 @@ You can use this code in a new SageMaker notebook and try different hyperparamet
 <i>NOTE: again, you might not be able to complete the training part for the reasons mentioned above. </i>
 
 We are really unhappy about the problem with insufficient permissions, because you can't experience the whole potential of the SageMaker tool.
-However, we hope that you could get the idea of what could be done with this amazing tool anyway!
+However, we hope that you could still get the idea of what could be done with this amazing tool anyway!
